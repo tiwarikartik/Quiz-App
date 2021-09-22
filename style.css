@@ -2,7 +2,8 @@
 
 html {
     background-image: url("images/background.png");
-    background-repeat: round;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 body {
@@ -57,6 +58,7 @@ input {
     color: black;
     font-size: 1.2rem;
     background-color: aliceblue;
+    transition: background-color 0.5s, color 0.5s;
     color: rgb(20, 20, 56);
 }
 
@@ -84,6 +86,7 @@ h4 {
     color: black;
     font-size: 1.5rem;
 }
+
 #score,
 #description {
     padding: 0;
@@ -97,4 +100,29 @@ h4 {
 
 #score {
     text-align: center;
+}
+
+button:hover {
+    background-color: rgb(112, 151, 255);
+    color: aliceblue;
+}
+
+@keyframes correct {
+    0% {
+        background-color: linear-gradient(90deg, aliceblue, rgb(200, 255, 160));
+    }
+
+    100% {
+        background-color: rgb(112, 255, 160);
+    }
+}
+
+@keyframes incorrect {
+    0% {
+        background-color: linear-gradient(90deg, aliceblue, rgb(255, 112, 112));
+    }
+
+    100% {
+        background-color: rgb(255, 112, 112);
+    }
 }

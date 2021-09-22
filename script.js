@@ -117,6 +117,8 @@ function checkAnswer(num) {
 
         // Adding the tick symbol as the answer is right
         document.getElementById(output).innerHTML = "&#10003;";
+        document.getElementById(option).style.animation =
+            "correct 1.5s ease-out";
 
         // Displaying next question
         if (index < quizArr.length) {
@@ -134,6 +136,8 @@ function checkAnswer(num) {
 
         // Adding the cross symbol as the answer is wrong
         document.getElementById(output).innerHTML = "&#10007;";
+        document.getElementById(option).style.animation =
+            "incorrect 1.5s ease-out";
 
         // Displaying next question
         setTimeout(() => {
@@ -149,6 +153,8 @@ function checkAnswer(num) {
 
 function createScoreCard() {
     const div = document.querySelector(".main");
+    div.removeAttribute("class");
+    div.setAttribute("class", "main");
 
     // Creating elements, adding attributes and writing content
     let h1 = document.createElement("h1");
@@ -158,8 +164,13 @@ function createScoreCard() {
     // paragraph tags
     let p1 = document.createElement("p");
     p1.setAttribute("id", "score");
-    p1.innerHTML = `${score} / ${maxScore} 
-    <p style="font-size:1.5rem; font-align:center">Correct</p>`;
+    p1.innerHTML = `
+        <span style='color:rgb(112, 255, 160)'>
+            ${score} / ${maxScore} 
+            <p style="font-size: 1.5rem; font-align: center;">
+                Correct
+            </p>
+        </span>`;
 
     let p2 = document.createElement("p");
     p2.setAttribute("id", "description");
@@ -174,7 +185,7 @@ function createScoreCard() {
 function getParagraph() {
     const percent = (score * 100) / 2;
     if (maxScore - score == 0) {
-        return "You passed! Congrats! You know enough about geography to have gotten a passing grade here. You should have gotten 100%.";
+        return "You passed! Congrats! You know enough about geography to have gotten a 100% Score.";
     } else if (maxScore - score == 1) {
         return "You passed! Congrats! You know enough about geography to have gotten a passing grade here. You should have gotten 100%, but maybe you mis-clicked somewhere.";
     } else if (percent < 0.4) {
