@@ -157,29 +157,19 @@ function createScoreCard() {
     div.setAttribute("class", "main");
 
     // Creating elements, adding attributes and writing content
-    let h1 = document.createElement("h1");
-    h1.setAttribute("id", "title");
-    h1.innerHTML = "Your Score";
-
-    // paragraph tags
-    let p1 = document.createElement("p");
-    p1.setAttribute("id", "score");
-    p1.innerHTML = `
+    div.innerHTML = `
+    <h1 id="title">Your Score</h1>
+    
+    <p id="score">
         <span style='color:rgb(112, 255, 160)'>
             ${score} / ${maxScore} 
             <p style="font-size: 1.5rem; font-align: center;">
                 Correct
             </p>
-        </span>`;
-
-    let p2 = document.createElement("p");
-    p2.setAttribute("id", "description");
-    p2.innerHTML = `${getParagraph()}`;
-
-    // Appending the Elements to the main div
-    div.appendChild(h1);
-    div.appendChild(p1);
-    div.appendChild(p2);
+        </span>
+    </p>
+    
+    <p id="description">${getParagraph()}</p>`;
 }
 
 function getParagraph() {
