@@ -39,7 +39,7 @@ function removeAllChildNodes(parentName) {
 
 function importQuestions() {
     // getting the name of the user
-    var name = document.querySelector("#name").value;
+    name = document.querySelector("#name").value;
 
     // Removing the previous HTML elements
     removeAllChildNodes(".main");
@@ -157,30 +157,40 @@ function createScoreCard() {
     div.setAttribute("class", "main");
 
     // Creating elements, adding attributes and writing content
-    div.innerHTML = `
-    <h1 id="title">Your Score</h1>
-    
-    <p id="score">
+    let h1 = document.createElement("h1");
+    h1.setAttribute("id", "title");
+    h1.innerHTML = "Your Score";
+
+    // paragraph tags
+    let p1 = document.createElement("p");
+    p1.setAttribute("id", "score");
+    p1.innerHTML = `
         <span style='color:rgb(112, 255, 160)'>
             ${score} / ${maxScore} 
             <p style="font-size: 1.5rem; font-align: center;">
                 Correct
             </p>
-        </span>
-    </p>
-    
-    <p id="description">${getParagraph()}</p>`;
+        </span>`;
+
+    let p2 = document.createElement("p");
+    p2.setAttribute("id", "description");
+    p2.innerHTML = `${name}${getParagraph()}`;
+
+    // Appending the Elements to the main div
+    div.appendChild(h1);
+    div.appendChild(p1);
+    div.appendChild(p2);
 }
 
 function getParagraph() {
     const percent = (score * 100) / 2;
     if (maxScore - score == 0) {
-        return "You passed! Congrats! You know enough about geography to have gotten a 100% Score.";
+        return ", you passed! Congrats! You know enough about geography to have gotten a 100% Score.";
     } else if (maxScore - score == 1) {
-        return "You passed! Congrats! You know enough about geography to have gotten a passing grade here. You should have gotten 100%, but maybe you mis-clicked somewhere.";
+        return ", you passed! Congrats! You know enough about geography to have gotten a passing grade here. You should have gotten 100%, but maybe you mis-clicked somewhere.";
     } else if (percent < 0.4) {
-        return "You failed, These were the easiest geography questions, but you still only managed just below a 40% score. I'll just assume you're having an off day.";
+        return ", you failed! These were the easiest geography questions, but you still only managed just below a 40% score. I'll just assume you're having an off day.";
     } else {
-        return "Good, You Passed You have scored more than 40%.";
+        return ", Good you passed and you have scored more than 40%.";
     }
 }
